@@ -1,6 +1,7 @@
 <DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php
@@ -8,12 +9,19 @@ $code_path = 'openstreetmap-date-format';
 
 print "<form action='.' method='post'>\n";
 if (!isset($_REQUEST['lang']) ) {
+  print "<div class='locale'>";
   print "Locale: <input name='lang' value=''>";
+  print "</div>";
 } elseif (!preg_match('/^[a-z]+(_[a-z]+)?$/', $_REQUEST['lang'])) {
+  print "<div class='locale'>";
   print "Invalid locale!";
   print "Locale: <input name='lang' value=\"" . htmlspecialchars($_REQUEST['lang']) . "\">";
+  print "</div>";
 } else {
+  print "<div class='locale'>";
   print "Locale: <input type='hidden' name='lang' value=\"" . htmlspecialchars($_REQUEST['lang']) . "\">" . htmlspecialchars($_REQUEST['lang']) . "<br>";
+  print "</div>";
+  print "<div class='code'>\n";
   foreach (['templates', 'locale', 'test'] as $p) {
     $file_path = "{$code_path}/{$p}/{$_REQUEST['lang']}.js";
     if (isset($_REQUEST[$p])) {
@@ -24,8 +32,9 @@ if (!isset($_REQUEST['lang']) ) {
     print "<textarea name='{$p}'>" . htmlspecialchars(file_get_contents($file_path)) . "</textarea><br>\n";
   }
 
+  print "</div>\n";
   print "<div class='tests'>Running tests:\n";
-  print "<pre>" . htmlspecialchars(runTest($_REQUEST['lang'])) . "</pre>";
+  print "<pre wrap>" . htmlspecialchars(runTest($_REQUEST['lang'])) . "</pre>";
   print "</div>";
 }
 print "<input type='submit' value='Save and run tests'>\n";
