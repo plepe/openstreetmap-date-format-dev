@@ -1,7 +1,12 @@
+<DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
 <?php
 $code_path = 'openstreetmap-date-format';
 
-print "<form action='index.php' method='post'>";
+print "<form action='.' method='post'>\n";
 if (!isset($_REQUEST['lang']) ) {
   print "Locale: <input name='lang' value=''>";
 } elseif (!preg_match('/^[a-z]+(_[a-z]+)?$/', $_REQUEST['lang'])) {
@@ -25,7 +30,10 @@ if (!isset($_REQUEST['lang']) ) {
 }
 print "<input type='submit' value='Save and run tests'>\n";
 print "</form>";
-
+?>
+</body>
+</html>
+<?php
 function runTest ($lang) {
   global $code_path;
 
