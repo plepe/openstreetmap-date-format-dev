@@ -5,7 +5,7 @@ form {
   top: 0;
   bottom: 0;
   display: grid;
-  grid-template-rows: 2em auto 2em;
+  grid-template-rows: 4em auto 2em;
   grid-template-columns: 60% 40%;
 }
 .locale {
@@ -15,7 +15,7 @@ form {
 .code {
   grid-column: 1 / 2;
   grid-row: 2 / 4;
-  overflow: auto;
+  position: relative;
 }
 .tests {
   grid-column: 2 / 3;
@@ -28,4 +28,12 @@ input[type=submit] {
   grid-row: 3 / 4;
 }
 textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
 }
